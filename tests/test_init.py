@@ -1,4 +1,4 @@
 
 
 def test_main():
-    assert bool(0) == True
+    assert bool(0) == False
