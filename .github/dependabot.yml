@@ -1,6 +1,6 @@
 version: 2
 updates:
-  - package-ecosystem: "cargo"
+  - package-ecosystem: "uv"
     # Look for `Cargo.toml` and `Cargo.lock` in the root directory
     directory: "/"
     # Check for updates every Monday
