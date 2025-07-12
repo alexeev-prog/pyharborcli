@@ -26,6 +26,7 @@ def detect_config_type_by_extension(extension: str) -> ConfigType:
 
     """
     cleaned_extension = extension.lower().lstrip(".")
+
     if cleaned_extension == "json":
         return ConfigType.JSON
     if cleaned_extension in ("yaml", "yml"):

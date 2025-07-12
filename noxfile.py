@@ -25,7 +25,6 @@ def test(session):
         '--strict-markers',  # treat unregistered markers as errors
         '-n',
         'auto',  # parallel testing
-        '--cov=src/pyharborcli',
         *session.posargs,  # allows passing additional pytest args from command line
     )
 
