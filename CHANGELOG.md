@@ -1,3 +1,15 @@
+commit f12df8022dc950b6ca163d5c192ffec6c409a570
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sat Jul 12 20:24:20 2025 +0700
+
+    fix tests
+
+commit 288d7a6c979fdc2ceea92289b0796b227e1a02c7
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sat Jul 12 20:22:54 2025 +0700
+
+    feat: add config loader (json, toml, yaml)
+
 commit 53ed331540f021f95d0d39a3cdeb60b18150dbf6
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Fri Jul 11 02:52:30 2025 +0700
