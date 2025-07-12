@@ -25,6 +25,7 @@ def test(session):
         '--strict-markers',  # treat unregistered markers as errors
         '-n',
         'auto',  # parallel testing
+        '--cov=src/pyharborcli',
         *session.posargs,  # allows passing additional pytest args from command line
     )
 
@@ -33,6 +34,14 @@ def test(session):
 def lint(session):
     session.install('ruff')
     session.run('ruff', 'check', 'src/pyharborcli/')
+
+
+@nox.session
+def format(session):
+    session.install('ruff', 'black')
+    session.run('ruff', 'check', 'src/pyharborcli/', '--fix')
+    session.run('ruff', 'format', 'src/pyharborcli/')
+    session.run('black', 'src/pyharborcli/')
 
 
 @nox.session
