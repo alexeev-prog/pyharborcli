@@ -78,7 +78,13 @@ class ConfigReader:
         self.config = self._load_data_from_config()
 
     def _load_data_from_config(self) -> dict:
-        """Load configuration data from file."""
+        """
+        Load configuration data from file.
+
+        Returns:
+            dict: loaded data as dictionary
+
+        """
         data = {}
 
         if not self.config_file.exists():
