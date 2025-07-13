@@ -1,3 +1,9 @@
+commit 599277a09cd759d17ae9968d25a68373200d1a53
+Author: Alexeev Bronislav <alexeev.dev@mail.ru>
+Date:   Sat Jul 12 20:32:13 2025 +0700
+
+    add mutants to gitignore and update dependabot
+
 commit b8af5e85b39d7fccc002c9ffd80429a0f9e58528
 Author: Alexeev Bronislav <alexeev.dev@mail.ru>
 Date:   Sat Jul 12 20:26:27 2025 +0700

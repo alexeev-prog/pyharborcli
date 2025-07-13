@@ -1,10 +1,7 @@
+import orjson as json
 import pytest
-import tempfile
-from pathlib import Path
-
 import toml
 import yaml
-import orjson as json
 
 from pyharborcli.loader import (
     ConfigReader,
@@ -48,12 +45,12 @@ CONFIG_READER_VALID_CASES = [
     (
         ConfigType.YAML,
         {"server": {"host": "localhost", "port": 8080}},
-        "server:\n  host: localhost\n  port: 8080"
+        "server:\n  host: localhost\n  port: 8080",
     ),
     (
         ConfigType.TOML,
         {"title": "Example", "owner": {"name": "Alice"}},
-        'title = "Example"\n\n[owner]\nname = "Alice"'
+        'title = "Example"\n\n[owner]\nname = "Alice"',
     ),
 ]
 
@@ -68,34 +65,45 @@ NON_DICT_CONTENT_CASES = [
     (ConfigType.YAML, "- item1\n- item2", ".yaml"),
 ]
 
+
 @pytest.mark.parametrize("extension, expected", EXTENSION_TEST_CASES)
 def test_detect_config_type_by_extension(extension, expected):
     """Test detection by file extension."""
     assert detect_config_type_by_extension(extension) == expected
+
 
 @pytest.mark.parametrize("filename, expected", FILENAME_TEST_CASES)
 def test_detect_config_type_by_filename(filename, expected):
     """Test detection by filename."""
     assert detect_config_type_by_filename(filename) == expected
 
+
 @pytest.fixture
 def tmp_config_file(tmp_path):
     """Create temporary config file for testing."""
+
     def _create_file(content, extension):
         file = tmp_path / f"test_config{extension}"
         file.write_text(content)
         return file
+
     return _create_file
 
+
 @pytest.mark.parametrize("config_type, config_data, content", CONFIG_READER_VALID_CASES)
-def test_config_reader_valid_content(tmp_config_file, config_type, config_data, content):
+def test_config_reader_valid_content(
+    tmp_config_file, config_type, config_data, content
+):
     """Test ConfigReader with valid file content."""
     # Create temp file
-    config_file = tmp_config_file(content, {
-        ConfigType.JSON: ".json",
-        ConfigType.YAML: ".yaml",
-        ConfigType.TOML: ".toml",
-    }[config_type])
+    config_file = tmp_config_file(
+        content,
+        {
+            ConfigType.JSON: ".json",
+            ConfigType.YAML: ".yaml",
+            ConfigType.TOML: ".toml",
+        }[config_type],
+    )
 
     # Test with explicit type
     reader = ConfigReader(str(config_file), config_type)
@@ -105,24 +113,34 @@ def test_config_reader_valid_content(tmp_config_file, config_type, config_data, 
     reader_auto = ConfigReader(str(config_file))
     assert reader_auto.config == config_data
 
+
 def test_config_reader_nonexistent_file():
     """Test with non-existent config file."""
     reader = ConfigReader("non_existent.json")
     assert reader.config == {}
 
-@pytest.mark.parametrize("config_type, content, extension, exception", CONFIG_READER_INVALID_CASES)
-def test_config_reader_invalid_content(tmp_config_file, config_type, content, extension, exception):
+
+@pytest.mark.parametrize(
+    "config_type, content, extension, exception", CONFIG_READER_INVALID_CASES
+)
+def test_config_reader_invalid_content(
+    tmp_config_file, config_type, content, extension, exception
+):
     """Test with invalid file content."""
     config_file = tmp_config_file(content, extension)
     with pytest.raises(exception):
         ConfigReader(str(config_file), configtype=config_type)
 
+
 @pytest.mark.parametrize("config_type, content, extension", NON_DICT_CONTENT_CASES)
-def test_config_reader_non_dict_content(tmp_config_file, config_type, content, extension):
+def test_config_reader_non_dict_content(
+    tmp_config_file, config_type, content, extension
+):
     """Test with valid non-dict content."""
     config_file = tmp_config_file(content, extension)
     reader = ConfigReader(str(config_file), configtype=config_type)
     assert reader.config == {}
+
 
 def test_config_reader_empty_file(tmp_config_file):
     """Test with empty file content."""
@@ -141,12 +159,14 @@ def test_config_reader_empty_file(tmp_config_file):
     reader = ConfigReader(str(toml_file))
     assert reader.config == {}
 
+
 def test_config_reader_no_extension_json(tmp_config_file):
     """Test file without extension containing JSON."""
     content = '{"test": "value"}'
     config_file = tmp_config_file(content, "")
     reader = ConfigReader(str(config_file))
     assert reader.config == {"test": "value"}
+
 
 def test_config_reader_no_extension_invalid(tmp_config_file):
     """Test file without extension with invalid content."""
