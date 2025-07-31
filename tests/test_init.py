@@ -90,9 +90,7 @@ def tmp_config_file(tmp_path):
     return _create_file
 
 
-@pytest.mark.parametrize(
-    "config_type, config_data, content", CONFIG_READER_VALID_CASES
-)  # noqa: PT006
+@pytest.mark.parametrize("config_type, config_data, content", CONFIG_READER_VALID_CASES)  # noqa: PT006
 def test_config_reader_valid_content(
     tmp_config_file, config_type, config_data, content
 ):
@@ -123,7 +121,7 @@ def test_config_reader_nonexistent_file():
 
 
 @pytest.mark.parametrize(
-    "config_type, content, extension, exception",
+    ("config_type", "content", "extension", "exception"),
     CONFIG_READER_INVALID_CASES,
 )
 def test_config_reader_invalid_content(
@@ -135,9 +133,7 @@ def test_config_reader_invalid_content(
         ConfigReader(str(config_file), configtype=config_type)
 
 
-@pytest.mark.parametrize(
-    "config_type, content, extension", NON_DICT_CONTENT_CASES
-)  # noqa: PT006
+@pytest.mark.parametrize("config_type, content, extension", NON_DICT_CONTENT_CASES)  # noqa: PT006
 def test_config_reader_non_dict_content(
     tmp_config_file, config_type, content, extension
 ):
