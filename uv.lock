@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.10"
 
 [[package]]
@@ -701,7 +701,7 @@ wheels = [
 
 [[package]]
 name = "mutmut"
-version = "3.3.0"
+version = "3.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -711,9 +711,9 @@ dependencies = [
     { name = "textual" },
     { name = "toml", marker = "python_full_version < '3.11'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f7/76/d386aee872b6f1855bc91539d8130d8977443090311682d3ba1cf7c93655/mutmut-3.3.0.tar.gz", hash = "sha256:48f0f89fbd92ffb7d8782002184ff86e27be51c20ad1b73e062e8e93198a3536", size = 131709, upload-time = "2025-05-18T18:22:59.096Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/64/b2/403fecfe80b0e43da57febf02748f3ec29d90c9942efefe2941f8bccd4ce/mutmut-3.3.1.tar.gz", hash = "sha256:6aabc3a8f2b6c8eafe7054e1f7348e68aba807dcf12bffb6bfa00e5046d8a6bd", size = 133797, upload-time = "2025-07-30T08:40:51.153Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/09/ae/0d275818ced7597d93bf4354f0f63a8ddc6f5b0eab80fd3042e705ba52c1/mutmut-3.3.0-py3-none-any.whl", hash = "sha256:b6665a1d56f7c01184006d12488c10db3442932c20ba1b74a554b8f936e8c616", size = 33358, upload-time = "2025-05-18T18:22:57.231Z" },
+    { url = "https://files.pythonhosted.org/packages/26/b2/be413154278da15151a0bffcbe88d8a0265781013a232b58df4c43377466/mutmut-3.3.1-py3-none-any.whl", hash = "sha256:b5dd21dff2af5bd1bdec0dccfdf0da82e1428d068a1f485c8138ae248552c9d8", size = 35557, upload-time = "2025-07-30T08:40:49.901Z" },
 ]
 
 [[package]]
